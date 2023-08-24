@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package greeter;
+
+import "google/api/annotations.proto";
+option go_package = "grpc-layout/api/greeter;greeter";
+// The greeting service definition.
+service Greeter {
+    rpc PostSayHello(HelloRequest) returns (HelloReply){
+        option (google.api.http) = {
+            post: "/v1/greeter/say",
+            body: "*",
+        };
+    }
+    rpc GetSayHello (HelloRequest) returns (HelloReply){
+        option (google.api.http) = {
+			get: "/v1/greeter/say/{qaUUid}"
+        };
+    }
+    // rpc SayHello (HelloRequest) returns (HelloReply){
+	// 	//http请求 提供http服务的接口
+	// 	option (google.api.http) = {
+	// 		// 定义一个 GET 接口，并且把 name 映射到 HelloRequest
+	// 		get: "/v1/student/{name}/{age}",
+	// 		// 可以添加附加接口
+	// 		additional_bindings {
+	// 			// 定义一个 POST 接口，并且把 body 映射到 HelloRequest
+	// 			post: "/v1/student",
+	// 			body: "*",
+	// 		}
+	// 	};
+	// }
+}
+// The request message containing the user's name.
+message HelloRequest {
+	string qaUUid = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+	string qaUUid = 1;
+}
